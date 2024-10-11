@@ -9,7 +9,8 @@ def write_tree(directory='.'):
             if is_ignored(full):
                 continue
             if entry.is_file(follow_symlinks=False):
-                print(full)
+                with open(full, 'rb') as f:
+                    print(data.hash_object( f.read()), full)
             elif entry.is_dir(follow_symlinks=False):
                 write_tree(full)
 
