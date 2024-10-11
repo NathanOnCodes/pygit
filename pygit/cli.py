@@ -1,7 +1,9 @@
 import argparse
 import os
-import data
 import sys
+
+from . import base
+from . import data
 
 def main():
     args = parse_args()
