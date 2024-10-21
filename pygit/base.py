@@ -75,8 +75,9 @@ def commit(message):
     commit = f'tree {write_tree ()}\n'
     commit += '\n'
     commit += f'{message}\n'
-    return data.hash_object(commit.encode(), 'commit')
- 
+    oid = data.hash_object(commit.encode(), 'commit')
+    data.set_HEAD(oid)
+    return oid
 
 def is_ignored(path):
     return '.pygit' in path.split('/')
