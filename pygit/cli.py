@@ -66,6 +66,9 @@ def cat_file(args):
 def write_tree(args):
     print(base.write_tree())
 
+def checkout(args):
+    base.checkout(args.oid)
+
 def log(args):
     oid = args.oid or data.get_HEAD()
     while oid:
