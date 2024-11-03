@@ -92,6 +92,8 @@ def commit(message):
     data.set_HEAD(oid)
     return oid
 
+def create_tag(name, oid):
+    pass
 
 def get_commit(oid):
     parent = None
