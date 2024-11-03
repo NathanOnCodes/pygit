@@ -77,7 +77,7 @@ def read_tree(tree_oid):
 def checkout(oid):
     commit = get_commit(oid)
     read_tree(commit.tree)
-    data.set_head(oid)
+    data.update_ref('HEAD', oid)
 
 
 def commit(message):
@@ -89,7 +89,7 @@ def commit(message):
     commit += '\n'
     commit += f'{message}\n'
     oid = data.hash_object(commit.encode(), 'commit')
-    data.set_HEAD(oid)
+    data.update_ref('HEAD', oid)
     return oid
 
 def create_tag(name, oid):
