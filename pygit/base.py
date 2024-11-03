@@ -82,7 +82,7 @@ def checkout(oid):
 
 def commit(message):
     commit = f'tree {write_tree ()}\n'
-    HEAD = data.get_HEAD()
+    HEAD = data.get_ref('HEAD')
     if HEAD:
         commit += f'parent {HEAD}\n'
 
