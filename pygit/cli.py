@@ -82,5 +82,9 @@ def log(args):
         print('')
         oid = commit.parent
 
+def tag(args):
+    oid = args.oid or data.get_HEAD()
+    base.create_tag(args.name, oid)
+
 def commit(args):
     print(base.commit())
