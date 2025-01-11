@@ -39,8 +39,11 @@ def get_object(oid, expected='blob'):
     return content
 
 def update_ref(ref, oid):
-    with open(f'{GIT_DIR}/{ref}', 'w') as f:
-        f.write(oid)
+    ref_path = f'{GIT_DIR}/{ref}'
+    if os.path.isfile(ref_path):
+        with open(ref_path) as f:
+            return f.read().strip()
+    
 
 
 def get_ref(ref):
