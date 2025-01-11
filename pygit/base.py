@@ -93,7 +93,7 @@ def commit(message):
     return oid
 
 def create_tag(name, oid):
-    pass
+    data.update_ref(f'refs/tags/{name}', oid)
 
 def get_commit(oid):
     parent = None
