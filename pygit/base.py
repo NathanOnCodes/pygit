@@ -112,5 +112,9 @@ def get_commit(oid):
     message = '\n'.join(lines)
     return commit(tree=tree, parent=parent, message=message)
 
+
+def get_oid(name):
+    return data.get_ref(name) or name
+
 def is_ignored(path):
     return '.pygit' in path.split('/')
