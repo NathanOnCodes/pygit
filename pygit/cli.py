@@ -16,6 +16,8 @@ def parse_args():
     commands = parser.add_subparsers(dest='command')
     commands.required = True
 
+    oid = base.get_oid
+
     init_parser = commands.add_parser('init')
     init_parser.set_defaults(func=init)
 
