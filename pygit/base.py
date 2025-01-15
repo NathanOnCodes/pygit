@@ -3,6 +3,7 @@ import itertools
 import operator
 from collections import namedtuple
 from . import data
+import string
 
 COMMIT = namedtuple('Commit', ['tree', 'parent', 'message'])
 
@@ -114,7 +115,22 @@ def get_commit(oid):
 
 
 def get_oid(name):
-    return data.get_ref(name) or name
+    refs_to_try = [
+        f'{name}',
+        f'refs/{name}',
+        f'refs/tags/{name}',
+        f'refs/heads/{name}',
+    ]
+
+    for ref in refs:
+        if data.get_ref(ref):
+            return data.get_ref(ref)
+        
+    is_hex = all (c in string.hexdigits for c in name)
+    if len(name) == 40 and is_hex:
+        return name
+    
+    assert False, f'Unknown object {name}'
 
 def is_ignored(path):
     return '.pygit' in path.split('/')
