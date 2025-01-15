@@ -122,7 +122,7 @@ def get_oid(name):
         f'refs/heads/{name}',
     ]
 
-    for ref in refs:
+    for ref in refs_to_try:
         if data.get_ref(ref):
             return data.get_ref(ref)
         
